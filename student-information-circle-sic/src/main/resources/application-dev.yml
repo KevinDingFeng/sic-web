@@ -1,0 +1,52 @@
+server:
+    port: 4455
+spring:
+    cache:
+        type: simple
+    datasource:
+        url: jdbc:mysql://192.168.3.7:4406/sic_dev?useUnicode=true&characterEncoding=UTF-8&serverTimezone=GMT&&useSSL=false
+        username: root
+        password: Root123!
+        driver-class-name: com.mysql.jdbc.Driver
+        type: com.alibaba.druid.pool.DruidDataSource
+
+    jpa:
+        database: mysql
+        show-sql: true
+        hibernate:
+            ddl-auto: update
+    redis:
+        host: 127.0.0.1
+        port: 6379
+        timeout: 0
+logging:
+    level:
+        root: INFO
+        org.springframework.web: INFO
+        org.hibernate: INFO
+    file: /home/kevin/temp/log/log.log
+sys:
+    pool:
+        id:
+            default: 2
+#sms:
+#    app:
+#        key: LTAIBrbJGQt4pWoP
+#        secret: jxFsdTMPBvMamzMrYGqp883wavHhbX
+#    template:
+#        code: SMS_147196678
+sms:
+    app:
+        key: LTAIwHu0sqMlrOjl
+        secret: HYD7y8YO2NIvp5KBH6acAZYbTSZQ5P
+    template:
+        code: SMS_149710018
+    sign: 盛禾阳光
+file:
+    path:
+        upload: /home/kevin/temp/sic/
+        show: /f/
+
+
+
+

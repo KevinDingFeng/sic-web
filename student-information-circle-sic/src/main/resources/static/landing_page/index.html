@@ -1,0 +1,111 @@
+<!doctype html>
+<html class="no-js">
+<head>
+    <meta charset="utf-8">
+    <script src="js/jquery.min.js"></script>
+</head>
+<body>
+<input id="textValue" />
+http://localhost:4455/landing_page/index.html?uuid=asdfasdfasdf&token=xxxxx&sid=12&landingPage=http://www.baidu.com
+http://localhost:4455/landing_page/index.html?uuid=asdfasdfasdf&sid=12&landingPage=http://www.baidu.com
+    <h4>1，获取访问参数：uuid、token、sid、landingPage</h4>
+    <h4>2，使用 uuid 、token、 sid 参数发出生成点击记录请求</h4>
+    <h4>3，等待请求结果，在规定之间内返回后，发生跳转；如果没有返回，则发出请求后，开始计时，在到达规定的时间后，发生跳转</h4>
+    <h4>4，发生跳转，跳转 landingPage 指向的页面</h4>
+    <script type="text/javascript">
+//1 返回格式 key=value[,...]
+function getParas(){
+	var url = location.search;
+	if(url.indexOf("?") != -1){
+		var str = url.substr(1);
+        var strs = str.split("&");
+        return strs;
+	}else{
+		return null;
+	}
+}
+var landingPage ;
+function init(){
+	var paras = getParas();
+	var uuid = getPara("uuid", paras);
+	var sid = getPara("sid", paras);
+	landingPage = getPara("landingPage", paras);
+	var token = getPara("token", paras);//可为空，其他值必须存在
+	console.log(uuid && sid && landingPage);
+	if(uuid && sid && landingPage){
+		// 2 
+		postClickRecord(uuid, sid, token);
+		// 3 开始计时
+		setTimeout(jump,50);
+	}
+}
+function getPara(key, paras){
+	for(var i = 0 ; i < paras.length ; i ++){
+        var arr = paras[i].split("=");
+        if(arr[0] == key){
+        	console.log("key = " + arr[0] + "; value = " + arr[1]);
+            return arr[1];
+        }
+    }
+}
+function postClickRecord(uuid, sid, token){
+	$.ajax({
+        type: 'POST',
+        url: "http://localhost:4455/click",
+        data: {uuid : uuid, sid : sid, token : token},
+        success: function(res){
+            console.log(res);
+            if(res.code == 200){
+            	console.log("定时器没走完");
+            	jump();
+            }else{
+            	console.log("出错了");
+            }
+        }
+    });
+}
+// 4
+function jump(){
+	console.log("定时器走完了");
+	window.location.href=landingPage;
+}
+init();
+/*
+ * 
+ function setTextValue(){
+	    var landingPageUrl = encodeURI("http://localhost:4455/landing_page/index.html");
+	    console.log(landingPageUrl);
+
+	    var uri = encodeURI("http://localhost:4455/landing_page/index.html?name=nn&uri=" + landingPageUrl);//回调页面
+	    console.log(uri);   
+	    document.getElementById("textValue").value = uri;
+	}
+	setTextValue();
+	function getPara(key){
+	    var url = location.search;
+	    //console.log(url);
+	    if(url.indexOf("?") != -1){
+	        var str = url.substr(1);
+	        var strs = str.split("&");
+	        for(var i = 0 ; i < strs.length ; i ++){
+	            var arr = strs[i].split("=");
+	            console.log("key = " + arr[0] + "; value = " + arr[1]);
+	            if(arr[0] == key){
+	                //console.log("匹配");
+	                return arr[1];
+	            }else{
+	                //console.log("不匹配");
+	            }
+	        }
+	    }else{
+	        console.log("不存在");
+	    }
+	}    
+	console.log(getPara("name"));
+	console.log(getPara("uri"));
+ 
+ 
+ */
+    </script>
+</body>
+</html>

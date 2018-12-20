@@ -1,0 +1,27 @@
+.tl_c{
+	text-align:center;
+}
+
+.col_0E90D2{
+	color:#0E90D2;
+}
+.back_0E90D2{
+	background-color:#0E90D2;
+	color:#fff;
+	font-size:14px;
+	height: 30px;
+	border-radius:5px;
+}
+.list_form{
+	width:100%;
+}
+.input_sty{
+	width:30%!important;
+}
+.mar_top{
+	margin-top:20px;
+}
+.go_btn>button{
+	height:37px;
+	font-size:14px;
+}

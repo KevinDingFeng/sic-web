@@ -1,0 +1,31 @@
+server:
+    port: 4456
+spring:
+    cache:
+        type: simple
+    datasource:
+        url: jdbc:mysql://127.0.0.1:3306/sic_dev?useUnicode=true&characterEncoding=UTF-8&serverTimezone=GMT&&useSSL=false
+        username: root
+        password: 1234
+        driver-class-name: com.mysql.jdbc.Driver
+        type: com.alibaba.druid.pool.DruidDataSource
+
+    jpa:
+        database: mysql
+        show-sql: true
+        hibernate:
+            ddl-auto: update
+    redis:
+        host: 127.0.0.1
+        port: 6379
+        timeout: 0
+logging:
+    level:
+        root: INFO
+        org.springframework.web: INFO
+        org.hibernate: INFO
+    file: /home/kevin/temp/log/log.log
+file:
+    path:
+        upload: /home/kevin/temp/sic/
+        show: /f/

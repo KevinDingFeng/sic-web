@@ -1,0 +1,11 @@
+增加了对百分数的支持：
+		tryPercent: function( value ) {
+			if(value&&/.*% */.test(value)){
+				value = value.replace(/% */,'');
+				value = Number( value );
+				if(!isNaN(value)){
+					return value/100;
+				}
+			}
+			return value;
+		},
