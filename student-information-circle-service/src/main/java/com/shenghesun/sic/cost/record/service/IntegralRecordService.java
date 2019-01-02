@@ -7,7 +7,6 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
@@ -25,7 +24,7 @@ public class IntegralRecordService {
 	private IntegralRecordDao integralRecordDao;
 	
 	// 默认值，单个用户每天的 积分总量上限
-	private static final BigDecimal AMOUNT_LIMIT = new BigDecimal(10000);
+	private static final BigDecimal AMOUNT_LIMIT = new BigDecimal(6000);
 //	 单次 积分兑换的数量，该值需要随时修改变化，TODO
 //	private static final BigDecimal AMOUNT_DEFAULT = new BigDecimal(10);
 	
@@ -42,9 +41,9 @@ public class IntegralRecordService {
 	 * @return
 	 */
 	public boolean effective(Long userId, HttpServletRequest req) {
-//		BigDecimal totalIntegral = this.getSumToday(userId);
-//		return totalIntegral.compareTo(AMOUNT_LIMIT) < 0; TODO
-		return true;
+		BigDecimal totalIntegral = this.getSumToday(userId);
+		return totalIntegral.compareTo(AMOUNT_LIMIT) < 0;
+//		return true;
 	}
 
 	public BigDecimal getSumToday(Long userId) {

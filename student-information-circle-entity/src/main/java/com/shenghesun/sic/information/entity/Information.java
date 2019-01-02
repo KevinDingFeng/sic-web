@@ -72,14 +72,15 @@ public class Information extends BaseEntity {
 	/**
 	 * 计费时积分的额度
 	 * 	即前端过一个周期，得到的积分数量，预期是逐次递减
+	 * 	默认是 10
 	 */
 	private BigDecimal amount = new BigDecimal(10);
 	
 	/**
 	 * 计费的次数
-	 * 	默认是 3 ，即每条信息单个用户会有三次计费的机会
+	 * 	默认是 2 ，即每条信息单个用户会有三次计费的机会
 	 */
-	private int costTimes = 3;
+	private int costTimes = 2;
 	
 	/**
 	 * 是否已发布
