@@ -90,6 +90,8 @@ public class StreamController {
 		json.put("type", type);
 		
 		return JsonUtil.getSuccessJSONObject(json);
+//		String data = "{\"code\":\"200\",\"data\":{\"ad\":{\"imgs\":\"1.jpg,2.jpg,3.jpg\",\"landingPage\":\"http://www.baidu.com\",\"title\":\"标题1\",\"uuid\":\"0129c3a6ee594c57b2b7163ec88b3988\",\"sid\":1},\"inforArr\":[{\"imgs\":\"1phb.jpg,586p.jpg,y6c6.jpg\",\"cost\":true,\"title\":\"你还记得《如懿传》里的穿帮镜头吗？\",\"uuid\":\"df2b64a2bbce4d38916aa8ea113d91f0\"}],\"flexible\":{\"imgs\":\"1.jpg,2.jpg,3.jpg\",\"landingPage\":\"http://www.baidu.com\",\"title\":\"标题1\",\"uuid\":\"0129c3a6ee594c57b2b7163ec88b3988\",\"sid\":1},\"index\":\"1\",\"type\":\"Recommend\"},\"message\":\"success\"}";
+//		return JSONObject.parseObject(data);
 	}
 	
 	@Autowired
@@ -100,6 +102,8 @@ public class StreamController {
 		List<InformationType> list = informationTypeService.findByRemoved(false);
 		List<InformationTypeModel> models = this.typesFormation(list);
 		return JsonUtil.getSuccessJSONObject(models);
+//		String data = "{\"code\":\"200\",\"data\":[{\"code\":\"Recommend\",\"name\":\"推荐\",\"index\":\"6\"},{\"code\":\"Headlines\",\"name\":\"校园头条\",\"index\":\"7\"},{\"code\":\"Education\",\"name\":\"教育\",\"index\":\"4\"},{\"code\":\"Movies\",\"name\":\"影视\",\"index\":\"6\"},{\"code\":\"ESports\",\"name\":\"电竞\",\"index\":\"7\"},{\"code\":\"Constellation\",\"name\":\"星座\",\"index\":\"4\"},{\"code\":\"Constellation1\",\"name\":\"星座1\",\"index\":\"4\"},{\"code\":\"Constellation2\",\"name\":\"星座2\",\"index\":\"4\"},{\"code\":\"Constellation3\",\"name\":\"星座3\",\"index\":\"4\"},{\"code\":\"Constellation4\",\"name\":\"星座4\",\"index\":\"4\"}],\"message\":\"success\"}";
+//		return JSONObject.parseObject(data);
 	}
 	
 	private List<InformationTypeModel> typesFormation(List<InformationType> list){

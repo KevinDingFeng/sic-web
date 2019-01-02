@@ -23,7 +23,7 @@ import com.shenghesun.sic.cost.record.entity.CostRecord.OperationType;
 public class CostRecordService {
 	
 	// 设置默认的计算积分的单位时长，即对用户来说，多少 秒 增加一次积分
-	private static final Long UNIT_TIME = 15_000L;
+	private static final Long UNIT_TIME = 30_000L;
 	
 	public Long getDefaultUnitTime() {
 		return UNIT_TIME;
